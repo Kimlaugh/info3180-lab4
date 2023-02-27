@@ -52,12 +52,18 @@ def login():
             user = db.session.execute(db.select(UserProfile).filter_by(username=username)).scalar()
             if user is not None and check_password_hash(user.password, password):
                 login_user(user)
-                flash('Login successfull.', 'success')
+                flash('Login successful.', 'success')
                 return redirect(url_for('upload'))
             else:
                  flash('Login failed.', 'fail')
     return render_template("login.html", form=form)
 
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash('Loggout successful', 'success')
+    return redirect(url_for('home'))
 
 # user_loader callback. This callback is used to reload the user object from
 # the user ID stored in the session
