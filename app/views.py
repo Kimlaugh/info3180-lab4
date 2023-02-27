@@ -77,6 +77,8 @@ def flash_errors(form):
                 getattr(form, field).label.text,
                 error
 ), 'danger')
+            
+            
 
 @app.route('/<file_name>.txt')
 def send_text_file(file_name):
